@@ -1,4 +1,4 @@
-$height: 200vh;
+$height: 100vh;
 $general-padding: 64px;
 $normal-size-font: 2vw;
 $normal-size-font-static: 21px;
@@ -15,29 +15,33 @@ $large-size-font: 3vw;
     content: '';
 }
 
-@keyframes slide-in{
+@keyframes invert{
     0% {
         background-color: black;
         color: white;
+        text-decoration-thickness: 0px;
     };
 
     100% {
         background-color: white;
         color: black;
-        transform:scale(1.05)
+        transform: scale(1.05);
+        text-decoration-thickness: 5px;
     };
 }
 
-@keyframes slide-out {
+@keyframes uninvert {
     0% {
         background-color: white;
         color: black;
+        text-decoration-thickness: 5px;
     };
 
     100% {
         background-color: black;
         color: white;
         transform: scale(1);
+        text-decoration-thickness: 0px;
     };
 }
 
@@ -53,8 +57,19 @@ body {
     overflow-x: hidden;
 }
 
+footer {
+    padding: $general-padding;
+    padding-left: 0px;
+}
+
+h1 {
+    background-color: black;
+    padding: 24px;
+}
+
 .minitext {
     font-weight: lighter;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 
@@ -67,7 +82,6 @@ body {
     padding: 0;
 
     position: flex;
-    
 
     background: inherit;
     border-right: 2px solid white;
@@ -105,7 +119,7 @@ a {
     background-color: black;
     color: white;
 
-    animation: slide-out 100ms;
+    animation: uninvert 120ms;
 }
 
 a:hover {
@@ -114,24 +128,20 @@ a:hover {
     background-color: white;
     color: black;
 
-    animation: slide-in 100ms;
+    animation: invert 125ms;
 }
 
 #navbar {
     height: 100vh;
     position: fixed;
     padding: $general-padding;
+    padding-top: 2vh;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    
-    div {
-        margin-block: 15px;
-    }
 
-    div:hover {
-        transform: scale(1.05);
+    div {
+        margin-block: 32px;
     }
 
     a {
@@ -139,6 +149,16 @@ a:hover {
         font-stretch: expanded;
         padding: 16px;
         font-size: $large-size-font;
+    }
+
+    a:hover {
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-decoration-thickness: 5px;
+    }
+
+    a:hover:before {
+        content: '> '
     }
 
     @media (max-width: 768px) {
@@ -158,9 +178,39 @@ a:hover {
         font-size: $normal-size-font-static;
         padding: 12px;
     }
+
+    #name {
+        display: none;
+    }
 }
 
 #main {
     padding: $general-padding;
-    padding-left: 50px;
+    padding-left: 48px;
+}
+
+#titlebar {
+    padding: 25px;
+    margin: 0;
+}
+
+#content {
+    margin: 0;
+    padding: $general-padding / 2;
+
+    background-color: black;
+}
+
+#logo-container {
+    padding: $general-padding;
+    padding-block-end: 0;
+}
+
+#logo {
+    width: inherit;
+}
+
+#name {
+    font-size: 16px;
+    font-weight: bolder;
 }
